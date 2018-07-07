@@ -1,0 +1,10 @@
+linters:
+  flake8:
+    python: 3
+  csslint:
+  sasslint:
+  eslint:
+    config: './eslint.config'
+  jshint:
+  standardjs:
+  yamllint:
