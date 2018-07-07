@@ -26,4 +26,4 @@ pip install -r requirements.txt
 ./manage.py showmigrations
 
 # Collect static files for nginx to serve
-./manage.py collectstatic
+./manage.py collectstatic --noinput
