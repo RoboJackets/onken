@@ -37,7 +37,7 @@ jobs:
           command: |
             . venv/bin/activate
             ./cc-test-reporter before-build
-            coverage run --source='.' manage.py test
+            coverage run --source='onken' manage.py test
             retval=$?
             coverage xml
             ./cc-test-reporter after-build --coverage-input-type coverage.py --exit-code $retval
