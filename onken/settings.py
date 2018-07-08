@@ -20,14 +20,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # This value must be set in settings_local.py
-# SECRET_KEY = ')kdrzd%8yp1sd_p9^*u@x$0&a+!bf$uy0-*v%z@bt$^$1zm3eu'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', ')kdrzd%8yp1sd_p9^*u@x$0&a+!bf$uy0-*v%z@bt$^$1zm3eu')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # This value must be set in settings_local.py
-# DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', True)
 
-# This value must be set in settings_local.py
-# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [os.environ.get('DJANGO_ALLOWED_HOST', 'localhost')]
 
 # Application definition
 
@@ -74,13 +73,17 @@ WSGI_APPLICATION = 'onken.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-# This value must be set in settings_local.py
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+# Set your database using DATABASE_URL
+# Postgres is required
+# https://github.com/kennethreitz/dj-database-url
+
+DATABASES = {
+    'default': {}
+}
+
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=None)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
@@ -122,5 +125,3 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-from .settings_local import *
