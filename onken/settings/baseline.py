@@ -76,7 +76,10 @@ WSGI_APPLICATION = 'onken.wsgi.application'
 # https://github.com/kennethreitz/dj-database-url
 
 DATABASES = {
-    'default': {}
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
 
 import dj_database_url
@@ -123,3 +126,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# Test report generation for CircleCI
+TEST_RUNNER = 'xmlrunner.extra.djangotestrunner.XMLTestRunner'
+
+TEST_OUTPUT_DIR = 'test-reports'

@@ -1,0 +1,50 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/onken
+    docker:
+      - image: circleci/python:3.7-stretch
+        environment:
+          DATABASE_URL: postgresql://root@localhost/circle_test?sslmode=disable
+      - image: circleci/postgres:10-ram
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_DB: circle_test
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum requirements.txt }}
+          - v1-dependencies-
+      - run:
+          name: Fetch Code Climate rest reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+      - run:
+          name: Install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install coverage codecov unittest-xml-reporting
+            pip install -r requirements.txt
+      - save-cache:
+          paths:
+            - ./venv/
+          key: v1-dependencies-{{ checksum requirements.txt }}
+      - run:
+          name: Run tests and submit reports to Code Climate
+          command: |
+            . venv/bin/activate
+            ./cc-test-reporter before-build
+            coverage run --source='.' manage.py test
+            ./cc-test-reporter after-build --coverage-input-type coverage.py --exit-code $?
+      - run:
+          name: Submit test reports to CodeCov
+          command: |
+            . venv/bin/activate
+            codecov
+      - store_test_results:
+          path: test-reports/
+      - store_artifacts:
+          path: test-reports/
