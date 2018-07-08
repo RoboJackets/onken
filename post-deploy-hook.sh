@@ -16,14 +16,8 @@ pip install -r requirements.txt
 # Run Django checks
 ./manage.py check --deploy
 
-# Show database migrations
-./manage.py showmigrations
-
 # Run database migrations
 ./manage.py migrate
-
-# Show database migrations again
-./manage.py showmigrations
 
 # Collect static files for nginx to serve
 ./manage.py collectstatic --noinput
