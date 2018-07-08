@@ -123,4 +123,4 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-from .settings_local import SECRET_KEY, DEBUG, ALLOWED_HOSTS, DATABASES
+from .settings_local import *
