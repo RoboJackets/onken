@@ -19,5 +19,8 @@ pip install -r requirements.txt
 # Run database migrations
 ./manage.py migrate
 
+# Ask uWSGI to reload app
+touch reload
+
 # Collect static files for nginx to serve
 ./manage.py collectstatic --noinput
