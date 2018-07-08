@@ -38,7 +38,9 @@ jobs:
             . venv/bin/activate
             ./cc-test-reporter before-build
             coverage run --source='.' manage.py test
-            ./cc-test-reporter after-build --coverage-input-type coverage.py --exit-code $?
+            retval=$?
+            coverage xml
+            ./cc-test-reporter after-build --coverage-input-type coverage.py --exit-code $retval
       - run:
           name: Submit test reports to CodeCov
           command: |
