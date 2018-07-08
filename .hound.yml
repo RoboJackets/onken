@@ -1,0 +1,14 @@
+flake8:
+  enabled: true
+rubocop:
+  enabled: false
+coffeescript:
+  enabled: false
+haml:
+  enabled: false
+golint:
+  enabled: false
+swift:
+  enabled: false
+
+fail_on_violations: true
