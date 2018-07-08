@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+import django_cas_ng.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('login', django_cas_ng.views.login, name='cas_login'),
+    path('logout', django_cas_ng.views.logout, name='cas_logout')
 ]

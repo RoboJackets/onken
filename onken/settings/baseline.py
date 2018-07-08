@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_cas_ng',
 ]
 
 MIDDLEWARE = [
@@ -45,6 +46,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'django_cas_ng.backends.CASBackend',
 ]
 
 ROOT_URLCONF = 'onken.urls'
@@ -127,7 +133,24 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+
 # Test report generation for CircleCI
 TEST_RUNNER = 'xmlrunner.extra.djangotestrunner.XMLTestRunner'
 
 TEST_OUTPUT_DIR = 'test-reports'
+
+
+# CAS-related settings
+CAS_SERVER_URL = 'https://login.gatech.edu/cas/'
+
+CAS_VERSION = 'CAS_2_SAML_1_0'
+
+CAS_FORCE_CHANGE_USERNAME_CASE = 'lower'
+
+CAS_APPLY_ATTRIBUTES_TO_USER = True
+
+CAS_RENAME_ATTRIBUTES = {
+    'sn': 'last_name',
+    'givenName': 'first_name',
+    'email_primary': 'email',
+}
