@@ -1,5 +1,6 @@
 flake8:
   enabled: true
+  config_file: '/.flake8'
 rubocop:
   enabled: false
 coffeescript:
@@ -10,5 +11,7 @@ golint:
   enabled: false
 swift:
   enabled: false
+sass-lint:
+  enabled: true
 
 fail_on_violations: true
