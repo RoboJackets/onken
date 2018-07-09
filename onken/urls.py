@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path
 import django_cas_ng.views
 import onken.public.views
-from django_cas_ng.signals import cas_user_authenticated
 
 urlpatterns = [
     path('admin/login/', django_cas_ng.views.login),
