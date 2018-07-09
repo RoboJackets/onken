@@ -16,9 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 import django_cas_ng.views
+import onken.public.views
+from django_cas_ng.signals import cas_user_authenticated
 
 urlpatterns = [
+    path('admin/login/', django_cas_ng.views.login),
+    path('admin/logout/', django_cas_ng.views.logout),
+
     path('admin/', admin.site.urls),
-    path('login', django_cas_ng.views.login, name='cas_login'),
-    path('logout', django_cas_ng.views.logout, name='cas_logout')
+
+    path('', onken.public.views.home),
+
+    path('accounts/login/', django_cas_ng.views.login, name='cas_login'),
+    path('accounts/logout/', django_cas_ng.views.logout, name='cas_logout'),
 ]
