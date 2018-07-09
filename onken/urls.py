@@ -24,7 +24,7 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
 
-    path('', onken.public.views.home),
+    path('', onken.public.views.home, name='index'),
 
     path('accounts/login/', django_cas_ng.views.login, name='cas_login'),
     path('accounts/logout/', django_cas_ng.views.logout, name='cas_logout'),

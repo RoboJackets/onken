@@ -1,0 +1,6 @@
+[run]
+branch = True
+source = onken
+omit =
+	onken/wsgi.py
+	*/apps.py
