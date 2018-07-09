@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.test import Client
 from django.urls import reverse
 
+
 class DummyTest(TestCase):
     def test_home_view(self):
         user = User.objects.create_user(username='gburdell3', first_name='George')
