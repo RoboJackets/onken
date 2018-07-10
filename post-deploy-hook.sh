@@ -8,6 +8,7 @@ set -o pipefail
 cd "${0%/*}"
 
 # Enable the virtualenv
+# shellcheck disable=SC1091
 source venv/bin/activate
 
 # Install required packages
