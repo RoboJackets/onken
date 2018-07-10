@@ -1,7 +1,8 @@
+---
 linters:
   csslint:
   eslint:
-    config: './eslint.config'
+    config: '/.eslintrc'
   jshint:
   standardjs:
   yamllint:
