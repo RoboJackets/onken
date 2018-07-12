@@ -5,7 +5,9 @@ jobs:
     docker:
       - image: circleci/python:3.7-stretch
         environment:
-          DATABASE_URL: postgresql://root@localhost/circle_test?sslmode=disable
+          DJANGO_DATABASE_NAME: circle_test
+          DJANGO_DATABASE_USER: root
+          DJANGO_DATABASE_PASSWORD:
       - image: circleci/postgres:10-ram
         environment:
           POSTGRES_USER: root
