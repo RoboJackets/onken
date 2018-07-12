@@ -18,7 +18,7 @@ pip install -r requirements.txt
 ./manage.py check --deploy
 
 # Run database migrations
-./manage.py migrate
+./manage.py migrate_schemas --executor=multiprocessing
 
 # Ask uWSGI to reload app
 touch reload

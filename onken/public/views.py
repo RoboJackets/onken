@@ -1,8 +1,6 @@
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-
+from django.contrib.auth.decorators import login_required
 
 @login_required
-def home(request):
-    return HttpResponse(request.user.first_name)
+def index(request):
+    return HttpResponse("This is the public app.")
