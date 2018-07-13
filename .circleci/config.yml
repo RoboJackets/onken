@@ -35,7 +35,7 @@ jobs:
             - ./venv/
           key: v1-dependencies-{{ checksum "requirements.txt" }}
       - run:
-          name: Run tests and submit reports to Code Climate
+          name: Run tests and submit coverage to Code Climate
           command: |
             . venv/bin/activate
             ./cc-test-reporter before-build
@@ -44,7 +44,7 @@ jobs:
             coverage xml
             ./cc-test-reporter after-build --coverage-input-type coverage.py --exit-code $retval
       - run:
-          name: Submit test reports to CodeCov
+          name: Submit test coverage to CodeCov
           command: |
             . venv/bin/activate
             codecov
