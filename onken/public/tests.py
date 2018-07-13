@@ -1,16 +1,25 @@
+#from django_tenants.test.cases import TenantTestCase
+#from django_tenants.test.client import TenantClient
+from django.shortcuts import reverse
+from django.conf import settings
+from onken.public.models import Workspace, Domain
 from django.test import TestCase
 from django.contrib.auth.models import User
 from django.test import Client
-from django.urls import reverse
 
+class IndexTest(TestCase):
+    def setUp(self):
+        super(IndexTest, self).setUp()
+        tenant = Workspace(schema_name='public')
+        tenant.save()
+        domain = Domain(tenant=tenant, domain="test.com")
+        domain.save()
+        #self.c = TenantClient(tenant)
 
-class DummyTest(TestCase):
-    def test_home_view(self):
-        user = User.objects.create_user(username='gburdell3', first_name='George')
-
-        client = Client()
+    def test_index(self):
+        user = User(username='gburdell3', first_name='George')
+        user.save()
+        client = Client(SERVER_NAME="test.com")
         client.force_login(user)
-
-        response = client.get(reverse('index'))
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "George")
+        response = client.get(reverse('public_index', urlconf=settings.PUBLIC_SCHEMA_URLCONF))
+        self.assertContains(response, "This is the public app.", status_code=200)

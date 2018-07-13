@@ -9,7 +9,7 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
 
-    path('', onken.public.views.index),
+    path('', onken.public.views.index, name='public_index'),
 
     path('accounts/login/', django_cas_ng.views.login),
     path('accounts/logout/', django_cas_ng.views.logout),
