@@ -1,11 +1,10 @@
-#from django_tenants.test.cases import TenantTestCase
-#from django_tenants.test.client import TenantClient
 from django.shortcuts import reverse
 from django.conf import settings
 from onken.public.models import Workspace, Domain
 from django.test import TestCase
 from django.contrib.auth.models import User
 from django.test import Client
+
 
 class IndexTest(TestCase):
     def setUp(self):
@@ -14,7 +13,6 @@ class IndexTest(TestCase):
         tenant.save()
         domain = Domain(tenant=tenant, domain="test.com")
         domain.save()
-        #self.c = TenantClient(tenant)
 
     def test_index(self):
         user = User(username='gburdell3', first_name='George')

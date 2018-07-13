@@ -1,4 +1,4 @@
-from onken.settings.baseline import *
+from onken.settings.baseline import *  # noqa: F401,F403
 
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True

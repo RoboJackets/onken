@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
             name='Workspace',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('schema_name', models.CharField(max_length=63, unique=True, validators=[django_tenants.postgresql_backend.base._check_schema_name])),
+                ('schema_name', models.CharField(max_length=63, unique=True, validators=[django_tenants.postgresql_backend.base._check_schema_name])),  # noqa: E501
                 ('name', models.CharField(max_length=100)),
                 ('created_on', models.DateField(auto_now_add=True)),
             ],
@@ -39,6 +39,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='domain',
             name='tenant',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='domains', to='public.Workspace'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='domains', to='public.Workspace'),  # noqa: E501
         ),
     ]
