@@ -1,4 +1,4 @@
-from onken.settings.staging import *  # lgtm[py/polluting-import] noqa: F401,F403
+from onken.settings.staging import *  # noqa: F401,F403 lgtm[py/polluting-import]
 
 DEBUG = False
 
