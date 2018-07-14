@@ -5,9 +5,9 @@ from django.conf import settings
 
 
 class IndexTest(TenantTestCase):
-    def setUp(self):
-        super(IndexTest, self).setUp()
-        self.c = TenantClient(self.tenant)
+#    def setUp(self):
+#        super(IndexTest, self).setUp()
+#        self.c = TenantClient(self.tenant)
 
     def test_index(self):
         response = self.c.get(reverse('workspace_index', urlconf=settings.ROOT_URLCONF))
