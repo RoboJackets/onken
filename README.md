@@ -118,7 +118,8 @@ Once you have all the above dependencies installed, you'll be able to run the ap
 # First, run migrations to set up your database.
 ./manage.py migrate_schemas
 
-# Create a public tenant once when setting up your environment - others can be added from the web management interface
+# Create a public tenant once when setting up your environment
+# Others can be added from the web management interface
 ./manage.py create_tenant --domain=onken.local --schema_name=public --name=public
 
 # Create a user with super administrator permissions for accessing the web management interface
