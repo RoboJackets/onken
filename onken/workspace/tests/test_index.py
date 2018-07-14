@@ -1,5 +1,4 @@
 from django.shortcuts import reverse
-from django.conf import settings
 from onken.workspace.test import WorkspaceTestCase
 
 

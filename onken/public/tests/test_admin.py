@@ -1,7 +1,6 @@
 from django.shortcuts import reverse
 from django.contrib.auth.models import User
 from onken.public.test import PublicTestCase
-from onken.public.models import Workspace
 
 
 class AdminTest(PublicTestCase):
@@ -19,9 +18,7 @@ class AdminTest(PublicTestCase):
         self.assertEqual(response.status_code, 200)
 
         response = self.client.post(
-            reverse('admin:public_workspace_delete', args=(2,)),
-            #{'object_id': 2},
-            #follow=True
+            reverse('admin:public_workspace_delete', args=(2,))
         )
 
         self.assertEqual(response.status_code, 403)
@@ -44,7 +41,6 @@ class AdminTest(PublicTestCase):
         # Note that the below assertions are dependent on implementation of the PublicTestCase
         self.assertContains(response, "The Public Tenant", status_code=200)
         self.assertContains(response, "test.com", status_code=200)
-
 
     def test_admin_domain_changelist_shows_names(self):
         user = User.objects.create_superuser(
