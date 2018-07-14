@@ -77,7 +77,7 @@ In production and staging environments, this application exclusively uses Georgi
 # Install it globally to provide a command you can use anywhere
 sudo npm install --global https://github.com/kberzinch/cas-server-mock
 
-# Run it - the default development configuration expects port 3004
+# Run it - the default development configuration expects http://localhost:3004/
 csm --port 3004 --database ~/gt_example.json
 ```
 
@@ -128,4 +128,4 @@ Once you have all the above dependencies installed, you'll be able to run the ap
 ./manage.py runserver
 ```
 
-Once the server is running, you can visit http://onken.local/admin/ and create and manage workspaces and domains.
+Once the server is running, you can visit http://onken.local:8000/admin/ and create and manage workspaces and domains.
