@@ -43,6 +43,20 @@ Enter it again:
 postgres=# \quit
 ```
 
+#### Creating a database
+
+Even if you're using the `postgres` user, the database will need to already exist before you can start the application.
+
+```
+$ sudo -u postgres psql
+psql (10.4 (Ubuntu 10.4-0ubuntu0.18.04))
+Type "help" for help.
+
+postgres=# CREATE DATABASE onken
+CREATE DATABASE
+postgres=# \quit
+```
+
 #### Configuring Onken to use your database
 
 To avoid committing secrets in GitHub, this application will pull database information from the following environment variables:
