@@ -119,7 +119,7 @@ Once you have all the above dependencies installed, you'll be able to run the ap
 ./manage.py migrate_schemas
 
 # Create a public tenant once when setting up your environment - others can be added from the web management interface
-./manage.py create_tenant --domain_url=onken.local --schema_name=public --name=public
+./manage.py create_tenant --domain=onken.local --schema_name=public --name=public
 
 # Create a user with super administrator permissions for accessing the web management interface
 ./manage.py create_tenant_superuser --username=gburdell3 --schema=public
