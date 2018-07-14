@@ -11,13 +11,9 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', ')kdrzd%8yp1sd_p9^*u@x$0&a+!bf$uy0-*v%z@bt$^$1zm3eu')
@@ -25,11 +21,13 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', ')kdrzd%8yp1sd_p9^*u@x$0&a+!bf$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', True)
 
-ALLOWED_HOSTS = [os.environ.get('DJANGO_ALLOWED_HOST', 'localhost')]
+ALLOWED_HOSTS = [os.environ.get('DJANGO_ALLOWED_HOST', '*')]
 
 # Application definition
 
-INSTALLED_APPS = [
+SHARED_APPS = (
+    'django_tenants',
+    'onken.public',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -37,9 +35,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_cas_ng',
-]
+)
+
+TENANT_APPS = (
+    'django.contrib.contenttypes',
+    'onken.workspace',
+)
+
+INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
+
+TENANT_MODEL = 'public.Workspace'
+
+TENANT_DOMAIN_MODEL = "public.Domain"
 
 MIDDLEWARE = [
+    'django_tenants.middleware.main.TenantMainMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -53,7 +63,9 @@ AUTHENTICATION_BACKENDS = [
     'django_cas_ng.backends.CASBackend',
 ]
 
-ROOT_URLCONF = 'onken.urls'
+PUBLIC_SCHEMA_URLCONF = 'onken.public.urls'
+
+ROOT_URLCONF = 'onken.workspace.urls'
 
 TEMPLATES = [
     {
@@ -77,19 +89,20 @@ WSGI_APPLICATION = 'onken.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-# Set your database using DATABASE_URL
-# Postgres is required
-# https://github.com/kennethreitz/dj-database-url
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django_tenants.postgresql_backend',
+        'NAME': os.environ.get('DJANGO_DATABASE_NAME'),
+        'USER': os.environ.get('DJANGO_DATABASE_USER'),
+        'PASSWORD': os.environ.get('DJANGO_DATABASE_PASSWORD'),
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
-db_from_env = dj_database_url.config(conn_max_age=None)
-DATABASES['default'].update(db_from_env)
+DATABASE_ROUTERS = {
+    'django_tenants.routers.TenantSyncRouter',
+}
 
 
 # Password validation
@@ -139,10 +152,10 @@ TEST_RUNNER = 'xmlrunner.extra.djangotestrunner.XMLTestRunner'
 TEST_OUTPUT_DIR = 'test-reports'
 
 
-# CAS-related settings
-CAS_SERVER_URL = 'https://login.gatech.edu/cas/'
+# CAS configuration
+CAS_SERVER_URL = 'http://localhost:3004'
 
-CAS_VERSION = 'CAS_2_SAML_1_0'
+CAS_VERSION = '3'
 
 CAS_FORCE_CHANGE_USERNAME_CASE = 'lower'
 
@@ -153,3 +166,5 @@ CAS_RENAME_ATTRIBUTES = {
     'givenName': 'first_name',
     'email_primary': 'email',
 }
+
+CAS_RETRY_LOGIN = False

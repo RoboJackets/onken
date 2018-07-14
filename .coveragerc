@@ -4,3 +4,4 @@ source = onken
 omit =
 	onken/wsgi.py
 	*/apps.py
+	onken/settings/*

@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class PublicConfig(AppConfig):
-    name = 'public'
-    verbose_name = 'Workspace Administration'
+    name = 'onken.public'
+    verbose_name = 'Workspaces'  # for the admin site
