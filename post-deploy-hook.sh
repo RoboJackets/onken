@@ -4,6 +4,8 @@
 set -e
 set -o pipefail
 
+export DEPLOYMENT_START=$(date)
+
 # Switch to the project directory
 cd "${0%/*}"
 
@@ -25,3 +27,7 @@ touch reload
 
 # Collect static files for nginx to serve
 ./manage.py collectstatic --noinput
+
+# Notify Sentry that the deployment completed
+# shellcheck disable=SC1091
+./notify-sentry.sh
