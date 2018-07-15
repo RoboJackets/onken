@@ -186,4 +186,5 @@ DATADOG_TRACE = {
 RAVEN_CONFIG = {
     'dsn': os.environ.get('DJANGO_RAVEN_DSN', None),
     'release': raven.fetch_git_sha(os.path.abspath(os.curdir)),
+    'environment': 'development',
 }
