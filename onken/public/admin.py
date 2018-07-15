@@ -30,4 +30,3 @@ class WorkspaceAdmin(admin.ModelAdmin):
 class DomainAdmin(admin.ModelAdmin):
     list_display = ['domain', 'tenant']
     search_fields = ['domain']
-    list_filter = ['tenant']
