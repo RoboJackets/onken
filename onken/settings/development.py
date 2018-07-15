@@ -35,6 +35,7 @@ SHARED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_cas_ng',
+    'ddtrace.contrib.django',
 )
 
 TENANT_APPS = (
@@ -168,3 +169,10 @@ CAS_RENAME_ATTRIBUTES = {
 }
 
 CAS_RETRY_LOGIN = False
+
+
+# Datadog configuration
+DATADOG_TRACE = {
+    'DEFAULT_SERVICE': 'onken',
+    'TAGS': {'env': 'dev'},
+}
