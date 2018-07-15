@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import raven
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -36,6 +37,7 @@ SHARED_APPS = (
     'django.contrib.staticfiles',
     'django_cas_ng',
     'ddtrace.contrib.django',
+    'raven.contrib.django.raven_compat',
 )
 
 TENANT_APPS = (
@@ -50,6 +52,8 @@ TENANT_MODEL = 'public.Workspace'
 TENANT_DOMAIN_MODEL = "public.Domain"
 
 MIDDLEWARE = [
+    'raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware',
+    'raven.contrib.django.raven_compat.middleware.Sentry404CatchMiddleware',
     'django_tenants.middleware.main.TenantMainMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -175,4 +179,11 @@ CAS_RETRY_LOGIN = False
 DATADOG_TRACE = {
     'DEFAULT_SERVICE': 'onken',
     'TAGS': {'env': 'dev'},
+}
+
+
+# Sentry configuration
+RAVEN_CONFIG = {
+    'dsn': os.environ.get('DJANGO_RAVEN_DSN', None),
+    'release': raven.fetch_git_sha(os.path.abspath(os.curdir)),
 }
