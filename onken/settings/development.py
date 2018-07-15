@@ -180,3 +180,8 @@ DATADOG_TRACE = {
     'DEFAULT_SERVICE': 'onken',
     'TAGS': {'env': 'dev'},
 }
+
+
+LOGIN_URL = '/login'
+
+LOGIN_REDIRECT_URL = '/'
