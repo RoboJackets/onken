@@ -4,7 +4,7 @@
 set -e
 set -o pipefail
 
-export DEPLOYMENT_START=$(date)
+export DEPLOYMENT_START=$(date --iso-8601=seconds)
 
 # Switch to the project directory
 cd "${0%/*}"
