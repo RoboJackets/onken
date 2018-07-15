@@ -8,8 +8,9 @@ from django.http import HttpResponseForbidden
 def index(request):
     return HttpResponse("This is the public app.")
 
+
 def login(request):
-	if(request.user.is_authenticated and not request.user.is_staff):
-		return HttpResponseForbidden()
-	else:
-		return django_cas_ng.views.login(request)
+    if(request.user.is_authenticated and not request.user.is_staff):
+        return HttpResponseForbidden()
+    else:
+        return django_cas_ng.views.login(request)
