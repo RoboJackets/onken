@@ -38,6 +38,7 @@ SHARED_APPS = (
     'django_cas_ng',
     'ddtrace.contrib.django',
     'raven.contrib.django.raven_compat',
+    'rest_framework'
 )
 
 TENANT_APPS = (
@@ -179,6 +180,19 @@ CAS_RETRY_LOGIN = False
 DATADOG_TRACE = {
     'DEFAULT_SERVICE': 'onken',
     'TAGS': {'env': 'dev'},
+}
+
+# DRF configuration
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissions'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning'
 }
 
 
