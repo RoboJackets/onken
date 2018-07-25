@@ -2,12 +2,13 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
 import django_cas_ng.views
+import onken.public.api_views
 import onken.public.views
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register(r'users', onken.public.views.UserViewSet)
-router.register(r'groups', onken.public.views.GroupViewSet)
+router.register(r'users', onken.public.api_views.UserViewSet)
+router.register(r'groups', onken.public.api_views.GroupViewSet)
 
 
 urlpatterns = [
@@ -21,5 +22,4 @@ urlpatterns = [
     path('logout', django_cas_ng.views.logout),
 
     url(r'^api/', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
