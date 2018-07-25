@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 import django_cas_ng.views
 from django.http import HttpResponseForbidden
 
+
 @login_required
 def index(request):
     return HttpResponse("This is the public app.")
