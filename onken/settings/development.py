@@ -42,6 +42,7 @@ SHARED_APPS = (
 )
 
 TENANT_APPS = (
+    'django.contrib.auth',
     'django.contrib.contenttypes',
     'onken.workspace',
 )
