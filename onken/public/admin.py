@@ -33,6 +33,7 @@ class DomainAdmin(admin.ModelAdmin):
     list_display = ['domain', 'tenant']
     search_fields = ['domain']
 
+
 @admin.register(User)
 class UserAdmin(UserAdmin):
     def user_change_password(self, request, id):
