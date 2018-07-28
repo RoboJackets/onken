@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models import Workspace, Domain, User
 from django.contrib.auth.admin import UserAdmin
-from django.core.exceptions import PermissionDenied
 
 admin.site.site_header = 'Onken Administration'
 admin.site.site_title = 'Onken Administration'
