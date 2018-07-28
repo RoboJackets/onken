@@ -1,5 +1,5 @@
 [flake8]
 max-line-length = 120
 exclude =
-	onken/public/migrations/
+	onken/public/migrations/,
 	onken/workspace/migrations/
