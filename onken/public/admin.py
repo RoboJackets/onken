@@ -34,7 +34,4 @@ class DomainAdmin(admin.ModelAdmin):
     search_fields = ['domain']
 
 
-@admin.register(User)
-class UserAdmin(UserAdmin):
-    def user_change_password(self, request, id):
-        raise PermissionDenied
+admin.site.register(User, UserAdmin)
