@@ -1,17 +1,16 @@
 #!/bin/bash
 
-# Abort deployment if any command fails
-set -e
-set -o pipefail
-
 export DEPLOYMENT_START=$(date --iso-8601=seconds)
 
 # Switch to the project directory
 cd "${0%/*}"
 
+{ set +x; } 2>/dev/null
+echo "+ source venv/bin/activate"
 # Enable the virtualenv
 # shellcheck disable=SC1091
 source venv/bin/activate
+set -x
 
 # Install required packages
 pip install -r requirements.txt
