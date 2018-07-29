@@ -10,7 +10,7 @@ def index(request):
 
 
 def login(request):
-    if(request.user.is_authenticated and not request.user.is_staff):
+    if request.user.is_authenticated and not request.user.is_staff:
         raise PermissionDenied
     else:
         return django_cas_ng.views.login(request)
