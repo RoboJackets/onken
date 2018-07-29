@@ -7,6 +7,7 @@ import django_cas_ng.views
 router = routers.DefaultRouter()
 router.register(r'users', onken.workspace.api_views.UserViewSet)
 router.register(r'groups', onken.workspace.api_views.GroupViewSet)
+router.register(r'vendors', onken.workspace.api_views.VendorViewSet)
 
 urlpatterns = [
     path('', onken.workspace.views.index, name="workspace_index"),

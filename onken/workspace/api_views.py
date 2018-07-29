@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from onken.workspace.serializers import UserSerializer, GroupSerializer
+from onken.workspace.serializers import UserSerializer, GroupSerializer, VendorSerializer
+from onken.workspace.models import Vendor
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -17,3 +18,11 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+
+
+class VendorViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Vendor.objects.all()
+    serializer_class = VendorSerializer
