@@ -1,10 +1,11 @@
 from django.shortcuts import reverse
-from onken.public.models import User
+from django.contrib.auth import get_user_model
 from onken.public.test import PublicTestCase
 
 
 class IndexTest(PublicTestCase):
     def test_index(self):
+        User = get_user_model()
         user = User(username='gburdell3', first_name='George')
         user.save()
 
