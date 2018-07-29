@@ -1,6 +1,5 @@
 from django.contrib import admin
-from django.urls import path
-from django.conf.urls import url, include
+from django.urls import path, include, re_path
 import django_cas_ng.views
 import onken.public.api_views
 import onken.public.views
@@ -23,5 +22,5 @@ urlpatterns = [
     path('login', django_cas_ng.views.login),
     path('logout', django_cas_ng.views.logout),
 
-    url(r'^api/', include(router.urls)),
+    re_path(r'^api/', include(router.urls)),
 ]
