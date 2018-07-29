@@ -1,6 +1,7 @@
 from django.db import models
 from onken.public.models import Workspace
 
+
 class Vendor(models.Model):
     status_choices = (
         ('unapproved', 'Unapproved'),
@@ -9,7 +10,6 @@ class Vendor(models.Model):
         ('unavailable', 'Unavailable'),
     )
 
-    workspace = models.ForeignKey(Workspace, on_delete=models.CASCADE)
     name = models.CharField(max_length=128)
     nationality = models.CharField(max_length=128)
     billing_address = models.TextField()
