@@ -1,5 +1,6 @@
 from django.db import models
 from django_tenants.models import TenantMixin, DomainMixin
+from django.contrib.auth.models import AbstractUser
 
 
 class Workspace(TenantMixin):
@@ -13,3 +14,7 @@ class Workspace(TenantMixin):
 class Domain(DomainMixin):
     def __str__(self):
         return self.domain
+
+
+class User(AbstractUser):
+    pass
