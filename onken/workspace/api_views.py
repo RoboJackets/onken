@@ -22,7 +22,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 class VendorViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows groups to be viewed or edited.
+    API endpoint that allows vendors to be viewed or edited.
     """
     queryset = Vendor.objects.all()
     serializer_class = VendorSerializer
