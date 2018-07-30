@@ -10,8 +10,12 @@ def forwards(apps, schema_editor):
 
     # Create the new permission
     content_type = ContentType.objects.get_for_model(Vendor)
-    permission = Permission.objects.create(codename='can_request_vendor', name='Can request vendor',
-                                           content_type=content_type)
+    perm_request_vendor = Permission.objects.create(codename='request_vendor',
+                                                    name='Can request vendor', content_type=content_type)
+    perm_view_sales_contact = Permission.objects.create(codename='view_vendor_sales_contact',
+                                                        name='Can view vendor sales contact', content_type=content_type)
+    perm_view_customer_id = Permission.objects.create(codename='view_vendor_customer_id',
+                                                      name='Can view vendor customer ID', content_type=content_type)
 
     # Get the groups that need this permission
     group_administrator = Group.objects.get(name='administrator')
@@ -19,16 +23,18 @@ def forwards(apps, schema_editor):
     group_requestor = Group.objects.get(name='requestor')
 
     # Add the permission to the groups
-    group_administrator.permissions.add(permission)
-    group_pm.permissions.add(permission)
-    group_requestor.permissions.add(permission)
+    group_administrator.permissions.add(perm_request_vendor, perm_view_sales_contact, perm_view_customer_id)
+    group_pm.permissions.add(perm_request_vendor)
+    group_requestor.permissions.add(perm_request_vendor, perm_view_sales_contact)
 
 
 def reverse(apps, schema_editor):
     if schema_editor.connection.alias != 'default':
         return
 
-    Permission.objects.get(codename='can_request_vendor').delete()
+    Permission.objects.get(codename='request_vendor').delete()
+    Permission.objects.get(codename='view_vendor_sales_contact').delete()
+    Permission.objects.get(codename='view_vendor_customer_id').delete()
 
 
 class Migration(migrations.Migration):
