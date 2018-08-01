@@ -16,8 +16,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "requirements.txt" }}
-          - v1-dependencies-
+          - $CACHE_VERSION-dependencies-{{ checksum "requirements.txt" }}
+          - $CACHE_VERSION-dependencies-
       - run:
           name: Fetch Code Climate test reporter
           command: |
@@ -33,7 +33,7 @@ jobs:
       - save-cache:
           paths:
             - ./venv/
-          key: v1-dependencies-{{ checksum "requirements.txt" }}
+          key: $CACHE_VERSION-dependencies-{{ checksum "requirements.txt" }}
       - run:
           name: Run tests and submit coverage to Code Climate
           command: |
