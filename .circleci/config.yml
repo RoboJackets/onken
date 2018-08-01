@@ -16,8 +16,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - $CACHE_VERSION-dependencies-{{ checksum "requirements.txt" }}
-          - $CACHE_VERSION-dependencies-
+            - $CACHE_VERSION-dependencies-{{ checksum "requirements.txt" }}
+            - $CACHE_VERSION-dependencies-
       - run:
           name: Fetch Code Climate test reporter
           command: |
