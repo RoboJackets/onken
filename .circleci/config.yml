@@ -16,8 +16,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - {{ .Environment.CACHE_VERSION }}-dependencies-{{ checksum "requirements.txt" }}
-            - {{ .Environment.CACHE_VERSION }}-dependencies-
+            - dependencies-{{ .Environment.CACHE_VERSION }}-{{ checksum "requirements.txt" }}
+            - dependencies-{{ .Environment.CACHE_VERSION }}-
       - run:
           name: Fetch Code Climate test reporter
           command: |
@@ -33,7 +33,7 @@ jobs:
       - save-cache:
           paths:
             - ./venv/
-          key: {{ .Environment.CACHE_VERSION }}-dependencies-{{ checksum "requirements.txt" }}
+          key: dependencies-{{ .Environment.CACHE_VERSION }}-{{ checksum "requirements.txt" }}
       - run:
           name: Run tests and submit coverage to Code Climate
           command: |
