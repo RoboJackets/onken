@@ -16,8 +16,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "requirements.txt" }}
-          - v1-dependencies-
+            - dependencies-{{ .Environment.CACHE_VERSION }}-{{ checksum "requirements.txt" }}
+            - dependencies-{{ .Environment.CACHE_VERSION }}-
       - run:
           name: Fetch Code Climate test reporter
           command: |
@@ -28,12 +28,8 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            pip install coverage codecov
+            pip install --upgrade --upgrade-strategy eager pip coverage codecov
             pip install -r requirements.txt
-      - save-cache:
-          paths:
-            - ./venv/
-          key: v1-dependencies-{{ checksum "requirements.txt" }}
       - run:
           name: Run tests and submit coverage to Code Climate
           command: |
@@ -53,6 +49,10 @@ jobs:
           command: |
             . venv/bin/activate
             coverage html
+      - save-cache:
+          paths:
+            - ./venv/
+          key: dependencies-{{ .Environment.CACHE_VERSION }}-{{ checksum "requirements.txt" }}
       - store_test_results:
           path: test-reports/
       - store_artifacts:

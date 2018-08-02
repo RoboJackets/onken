@@ -1,12 +1,12 @@
 from django.urls import path, include, re_path
 import onken.workspace.views
 from rest_framework import routers
-import onken.workspace.api_views
+from onken.public.api_views import UserViewSet, GroupViewSet
 import django_cas_ng.views
 
 router = routers.DefaultRouter()
-router.register(r'users', onken.workspace.api_views.UserViewSet)
-router.register(r'groups', onken.workspace.api_views.GroupViewSet)
+router.register(r'users', UserViewSet)
+router.register(r'groups', GroupViewSet)
 
 urlpatterns = [
     path('', onken.workspace.views.index, name="workspace_index"),

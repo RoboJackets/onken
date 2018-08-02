@@ -1,6 +1,6 @@
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import Group
 from rest_framework import serializers
-from onken.public.models import Workspace, Domain
+from onken.public.models import Workspace, Domain, User
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
