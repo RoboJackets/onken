@@ -2,6 +2,6 @@
 extends: default
 
 rules:
-	line-length:
-	  max: 120
+  line-length:
+    max: 120
     allow-non-breakable-words: true
