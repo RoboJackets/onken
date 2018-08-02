@@ -6,3 +6,4 @@ linters:
   jshint:
   standardjs:
   yamllint:
+    config: './yamllint'
