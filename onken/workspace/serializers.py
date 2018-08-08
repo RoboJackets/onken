@@ -28,3 +28,23 @@ class VendorSerializer(FieldPermissionsMixin, serializers.HyperlinkedModelSerial
             'sales_contact': ['workspace.view_vendor_sales_contact'],
             'customer_id': ['workspace.view_vendor_customer_id'],
         }
+
+    # Override create() to enforce custom attribute permission logic
+    def create(self, validated_data):
+        # Get authenticated user
+        user = None
+        request = self.context.get("request")
+        if request and hasattr(request, "user"):
+            user = request.user
+
+        # If they can't create a vendor *but* can request one, override the status
+        if not user.has_perm('create_vendor') & user.has_perm('request_vendor'):
+            validated_data.pop('status', None)
+
+            # Set the admin_notes custom value...
+            validated_data['status'] = 'unapproved'
+
+        instances = [
+            Vendor(**attrs) for attrs in validated_data
+        ]
+        return Vendor.objects.bulk_create(instances)
