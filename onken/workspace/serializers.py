@@ -38,7 +38,7 @@ class VendorSerializer(FieldPermissionsMixin, serializers.HyperlinkedModelSerial
             user = request.user
 
         # If they can't create a vendor *but* can request one, override the status
-        if not user.has_perm('create_vendor') & user.has_perm('request_vendor'):
+        if not user.has_perm('add_vendor') & user.has_perm('request_vendor'):
             validated_data.pop('status', None)
 
             # Set the admin_notes custom value...
