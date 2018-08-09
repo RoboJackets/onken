@@ -1,5 +1,6 @@
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import Group
 from rest_framework import serializers
+from onken.public.models import User
 from onken.workspace.models import Vendor
 from onken.workspace.mixins import FieldPermissionsMixin
 

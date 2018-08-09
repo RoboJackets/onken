@@ -1,4 +1,4 @@
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, Permission
 from django.contrib.auth import get_user_model
 from rest_framework import viewsets
 from onken.public.serializers import UserSerializer, GroupSerializer, WorkspaceSerializer,\
