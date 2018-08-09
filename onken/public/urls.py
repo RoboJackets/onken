@@ -10,6 +10,7 @@ router.register(r'users', onken.public.api_views.UserViewSet)
 router.register(r'groups', onken.public.api_views.GroupViewSet)
 router.register(r'workspaces', onken.public.api_views.WorkspaceViewSet)
 router.register(r'domains', onken.public.api_views.DomainViewSet)
+router.register(r'permissions', onken.public.api_views.PermissionViewSet)
 
 
 urlpatterns = [

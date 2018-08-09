@@ -1,6 +1,7 @@
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User, Group, Permission
 from rest_framework import viewsets
-from onken.public.serializers import UserSerializer, GroupSerializer, WorkspaceSerializer, DomainSerializer
+from onken.public.serializers import UserSerializer, GroupSerializer, WorkspaceSerializer,\
+    DomainSerializer, PermissionSerializer
 from onken.public.models import Workspace, Domain
 
 
@@ -34,3 +35,11 @@ class DomainViewSet(viewsets.ModelViewSet):
     """
     queryset = Domain.objects.all()
     serializer_class = DomainSerializer
+
+
+class PermissionViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows permissions to be viewed or edited
+    """
+    queryset = Permission.objects.all()
+    serializer_class = PermissionSerializer

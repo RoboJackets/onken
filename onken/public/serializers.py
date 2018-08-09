@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User, Group, Permission
 from rest_framework import serializers
 from onken.public.models import Workspace, Domain
 
@@ -7,6 +7,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = ('url', 'username', 'email', 'groups')
+        depth = 1
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
@@ -25,3 +26,9 @@ class DomainSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Domain
         fields = ('domain', 'tenant')
+
+
+class PermissionSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Permission
+        fields = ('url', 'name', 'codename')
