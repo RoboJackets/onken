@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Workspace, Domain
+from .models import Workspace, Domain, User
+from django.contrib.auth.admin import UserAdmin
 
 admin.site.site_header = 'Onken Administration'
 admin.site.site_title = 'Onken Administration'
@@ -30,3 +31,6 @@ class WorkspaceAdmin(admin.ModelAdmin):
 class DomainAdmin(admin.ModelAdmin):
     list_display = ['domain', 'tenant']
     search_fields = ['domain']
+
+
+admin.site.register(User, UserAdmin)
