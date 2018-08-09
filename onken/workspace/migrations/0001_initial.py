@@ -9,7 +9,6 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('public', '0002_auto_20180713_2350'),
     ]
 
     operations = [
@@ -21,7 +20,9 @@ class Migration(migrations.Migration):
                 ('nationality', models.CharField(max_length=128)),
                 ('billing_address', models.TextField()),
                 ('gt_vendor_id', models.IntegerField(null=True)),
-                ('status', models.CharField(choices=[('unapproved', 'Unapproved'), ('approved', 'Approved'), ('preferred', 'Preferred'), ('unavailable', 'Unavailable')], max_length=24)),
+                ('status', models.CharField(choices=[('unapproved', 'Unapproved'), ('approved', 'Approved'),
+                                            ('preferred', 'Preferred'), ('unavailable', 'Unavailable')],
+                                            max_length=24)),
                 ('sales_contact', models.TextField(null=True)),
                 ('customer_id', models.CharField(max_length=128, null=True)),
                 ('web_account', models.BooleanField(default=False)),
