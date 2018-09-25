@@ -3,7 +3,7 @@ psycopg2-binary==2.7.5
 -e git://github.com/mingchen/django-cas-ng.git#egg=django-cas-ng
 django-tenants==2.0.0
 unittest-xml-reporting==2.2.0
-ddtrace==0.13.1
+ddtrace==0.14.1
 raven==6.9.0
 djangorestframework==3.8.2
 markdown==2.6.11
