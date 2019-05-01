@@ -1,4 +1,4 @@
-django==2.1.2
+django==2.2.1
 psycopg2-binary==2.7.5
 -e git://github.com/mingchen/django-cas-ng.git#egg=django-cas-ng
 django-tenants==2.0.0
